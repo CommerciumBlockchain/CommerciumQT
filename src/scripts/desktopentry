@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=cmm-qt-wallet
+Comment=Full node and wallet for Commercium
+GenericName=Wallet
+Exec=/usr/local/bin/cmm-qt-wallet
+Icon=cmm-qt-wallet.xpm
+Type=Application
+StartupNotify=true
+StartupWMClass=Code
+Categories=Utility;
+MimeType=text/plain;inode/directory;
+Keywords=cmm-qt-wallet;
+
