@@ -142,7 +142,7 @@ void ConnectionLoader::createCommerciumConf() {
     QTextStream out(&file); 
     
     out << "server=1\n";
-    out << "addnode=mainnet.z.cash\n";
+    out << "addnode=seed01.commercium.net\n";
     out << "rpcuser=cmm-qt-wallet\n";
     out << "rpcpassword=" % randomPassword() << "\n";
     file.close();
@@ -281,7 +281,7 @@ bool ConnectionLoader::startEmbeddedCommerciumd() {
     // Finally, start commerciumd    
     QDir appPath(QCoreApplication::applicationDirPath());
 #ifdef Q_OS_LINUX
-    auto commerciumdProgram = appPath.absoluteFilePath("zqw-commerciumd");
+    auto commerciumdProgram = appPath.absoluteFilePath("commerciumd");
     if (!QFile(commerciumdProgram).exists()) {
         commerciumdProgram = appPath.absoluteFilePath("commerciumd");
     }
