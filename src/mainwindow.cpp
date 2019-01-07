@@ -337,11 +337,7 @@ void MainWindow::setupStatusBar() {
             menu.addAction("View tx on block explorer", [=]() {
                 QString url;
                 if (Settings::getInstance()->isTestnet()) {
-<<<<<<< HEAD
                     url = "https://explorer.commercium.net/tx/" + txid;
-=======
-                    url = "https://explorer.testnet.commercium.net/tx/" + txid;
->>>>>>> 4a43bc880a9d5a25199a909cd6d32f6162a3274a
                 }
                 else {
                     url = "https://explorer.commercium.net/tx/" + txid;
