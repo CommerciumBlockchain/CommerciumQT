@@ -634,10 +634,12 @@ void MainWindow::sendButton() {
         });
     }        
 }
+
+QString MainWindow::doSendTxValidations(Tx tx) {
+
     return QString();
 }
 
 void MainWindow::cancelButton() {
     removeExtraAddresses();
 }
-
