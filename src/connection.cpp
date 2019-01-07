@@ -246,7 +246,7 @@ void ConnectionLoader::doNextDownload(std::function<void(void)> cb) {
 
         if (currentDownload->error()) {
             main->logger->write("Downloading " + filename + " failed");
-            this->showError(QObject::tr("Downloading ") + filename + QObject::tr(" failed. Please check the help site for more info"));                
+            this->showError(QObject::tr("Downloading ") + filename + QObject::tr(" failed. Please run commercium-fetch-params.));                
         } else {
             doNextDownload(cb);
         }
