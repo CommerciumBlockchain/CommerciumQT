@@ -337,7 +337,7 @@ void MainWindow::setupStatusBar() {
             menu.addAction("View tx on block explorer", [=]() {
                 QString url;
                 if (Settings::getInstance()->isTestnet()) {
-                    url = "https://explorer.commercium.net/tx/" + txid;
+                    url = "https://explorer.testnet.commercium.net/tx/" + txid;
                 }
                 else {
                     url = "https://explorer.commercium.net/tx/" + txid;
@@ -1231,4 +1231,4 @@ MainWindow::~MainWindow()
 
     delete loadingMovie;
     delete logger;
-}
+}   
