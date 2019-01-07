@@ -635,8 +635,7 @@ void MainWindow::sendButton() {
     }        
 }
 
-QString MainWindow::doSendTxValidations(Tx tx) {
-    if (!Settings::isValidAddress(tx.fromAddr)) return QString(tr("From Address is Invalid"));    
+QString MainWindow::doSendTxValidations(Tx tx) {  
 
     for (auto toAddr : tx.toAddrs) {
         if (!Settings::isValidAddress(toAddr.addr)) {
