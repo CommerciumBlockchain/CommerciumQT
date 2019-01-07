@@ -337,10 +337,10 @@ void MainWindow::setupStatusBar() {
             menu.addAction("View tx on block explorer", [=]() {
                 QString url;
                 if (Settings::getInstance()->isTestnet()) {
-                    url = "https://explorer.testnet.z.cash/tx/" + txid;
+                    url = "https://explorer.testnet.commercium.net/tx/" + txid;
                 }
                 else {
-                    url = "https://explorer.zcha.in/transactions/" + txid;
+                    url = "https://explorer.commercium.net/tx/" + txid;
                 }
                 QDesktopServices::openUrl(QUrl(url));
             });
