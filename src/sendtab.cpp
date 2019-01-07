@@ -634,28 +634,6 @@ void MainWindow::sendButton() {
         });
     }        
 }
-
-<<<<<<< HEAD
-QString MainWindow::doSendTxValidations(Tx tx) {
-//   if (!Settings::isValidAddress(tx.fromAddr)) return QString(tr("From Address is Invalid"));    
-
-//    for (auto toAddr : tx.toAddrs) {
-//        if (!Settings::isValidAddress(toAddr.addr)) {
-//            QString addr = (toAddr.addr.length() > 200 ? toAddr.addr.left(100) + "..." : toAddr.addr);
-//            return QString(tr("Recipient Address ")) % addr % tr(" is Invalid");
-//        }
-//    }
-=======
-QString MainWindow::doSendTxValidations(Tx tx) {  
-
-    for (auto toAddr : tx.toAddrs) {
-        if (!Settings::isValidAddress(toAddr.addr)) {
-            QString addr = (toAddr.addr.length() > 100 ? toAddr.addr.left(100) + "..." : toAddr.addr);
-            return QString(tr("Recipient Address ")) % addr % tr(" is Invalid");
-        }
-    }
->>>>>>> 4a43bc880a9d5a25199a909cd6d32f6162a3274a
-
     return QString();
 }
 
