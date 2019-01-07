@@ -77,10 +77,5 @@ make
 
 ./cmm-qt-wallet.app/Contents/MacOS/cmm-qt-wallet
 ```
+[file an issue](https://github.com/CommerciumBlockchain/cmm-qt-wallet/issues).
 
-### [Troubleshooting Guide & FAQ](https://github.com/CommerciumBlockchain/cmm-qt-wallet/wiki/Troubleshooting-&-FAQ)
-Please read the [troubleshooting guide](https://github.com/CommerciumBlockchain/cmm-qt-wallet/wiki/Troubleshooting-&-FAQ) for common problems and solutions.
-For support or other questions, tweet at [@cmmqtwallet](https://twitter.com/cmmqtwallet) or [file an issue](https://github.com/CommerciumBlockchain/cmm-qt-wallet/issues).
-
-_PS: cmm-qt-wallet is NOT an official wallet, and is not affiliated with the Zerocoin Electric Coin Company in any way._
-# cmm-qt-wallet
