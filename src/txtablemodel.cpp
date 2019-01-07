@@ -132,7 +132,7 @@ void TxTableModel::updateAllData() {
                         return addr;
                 }
         case 2: return QDateTime::fromMSecsSinceEpoch(modeldata->at(index.row()).datetime *  (qint64)1000).toLocalTime().toString();
-        case 3: return Settings::getZECDisplayFormat(modeldata->at(index.row()).amount);
+        case 3: return Settings::getCMMDisplayFormat(modeldata->at(index.row()).amount);
         }
     } 
 

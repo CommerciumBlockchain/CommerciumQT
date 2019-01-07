@@ -223,7 +223,7 @@ void MainWindow::turnstileDoMigration(QString fromAddr) {
         return bal;
     };
 
-    turnstile.fromBalance->setText(Settings::getZECUSDDisplayFormat(fnGetAllSproutBalance()));
+    turnstile.fromBalance->setText(Settings::getCMMUSDDisplayFormat(fnGetAllSproutBalance()));
     for (auto addr : *rpc->getAllZAddresses()) {
         auto bal = rpc->getAllBalances()->value(addr);
         if (Settings::getInstance()->isSaplingAddress(addr)) {
@@ -241,12 +241,12 @@ void MainWindow::turnstileDoMigration(QString fromAddr) {
             bal = rpc->getAllBalances()->value(addr);
         }
 
-        auto balTxt = Settings::getZECUSDDisplayFormat(bal);
+        auto balTxt = Settings::getCMMUSDDisplayFormat(bal);
         
         if (bal < Turnstile::minMigrationAmount) {
             turnstile.fromBalance->setStyleSheet("color: red;");
             turnstile.fromBalance->setText(balTxt % " [You need at least " 
-                        % Settings::getZECDisplayFormat(Turnstile::minMigrationAmount)
+                        % Settings::getCMMDisplayFormat(Turnstile::minMigrationAmount)
                         % " for automatic migration]");
             turnstile.buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
         } else {
@@ -274,7 +274,7 @@ void MainWindow::turnstileDoMigration(QString fromAddr) {
     QObject::connect(turnstile.privLevel, QOverload<int>::of(&QComboBox::currentIndexChanged), [=] (auto idx) {
         // Update the fees
         turnstile.minerFee->setText(
-            Settings::getZECUSDDisplayFormat(std::get<0>(privOptions[idx]) * Settings::getMinerFee()));
+            Settings::getCMMUSDDisplayFormat(std::get<0>(privOptions[idx]) * Settings::getMinerFee()));
     });
 
     for (auto i : privOptions) {
@@ -551,7 +551,7 @@ void MainWindow::postToZBoard() {
     QRegExpValidator v(QRegExp("^[a-zA-Z0-9_]{3,20}$"), zb.postAs);
     zb.postAs->setValidator(&v);
 
-    zb.feeAmount->setText(Settings::getZECUSDDisplayFormat(Settings::getZboardAmount() + Settings::getMinerFee()));
+    zb.feeAmount->setText(Settings::getCMMUSDDisplayFormat(Settings::getZboardAmount() + Settings::getMinerFee()));
 
     auto fnBuildNameMemo = [=]() -> QString {
         auto memo = zb.memoTxt->toPlainText().trimmed();
@@ -1161,7 +1161,7 @@ void MainWindow::setupRecieveTab() {
         }
         
         ui->rcvLabel->setText(label);
-        ui->rcvBal->setText(Settings::getZECUSDDisplayFormat(rpc->getAllBalances()->value(addr)));
+        ui->rcvBal->setText(Settings::getCMMUSDDisplayFormat(rpc->getAllBalances()->value(addr)));
         ui->txtRecieve->setPlainText(addr);       
         ui->qrcodeDisplay->setAddress(addr);
         if (rpc->getUsedAddresses()->value(addr, false)) {

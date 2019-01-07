@@ -145,7 +145,7 @@ QList<int> Turnstile::getBlockNumbers(int start, int end, int count) {
     return blocks;
 }
 
-    // Need at least 0.0005 ZEC for this
+    // Need at least 0.0005 CMM for this
 double Turnstile::minMigrationAmount = 0.0005;
 
 QList<double> Turnstile::splitAmount(double amount, int parts) {
@@ -179,7 +179,7 @@ void Turnstile::fillAmounts(QList<double>& amounts, double amount, int count) {
     }
 
     // Get a random amount off the total amount and call recursively.
-    // Multiply by hundred, because we'll operate on 0.01 ZEC minimum. We'll divide by 100 later on 
+    // Multiply by hundred, because we'll operate on 0.01 CMM minimum. We'll divide by 100 later on 
     // in this function.
     double curAmount = std::rand() % (int)std::floor(amount * 100);
 

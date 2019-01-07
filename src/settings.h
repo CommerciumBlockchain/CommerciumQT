@@ -51,8 +51,8 @@ public:
     void    setUsingCommerciumConf(QString confLocation);
     const   QString& getCommerciumdConfLocation() { return _confLocation; }
 
-    void    setZECPrice(double p) { cmmPrice = p; }
-    double  getZECPrice();
+    void    setCMMPrice(double p) { cmmPrice = p; }
+    double  getCMMPrice();
 
     void    setPeers(int peers);
     int     getPeers();
@@ -67,8 +67,8 @@ public:
 
     static QString getDecimalString(double amt);
     static QString getUSDFormat(double bal);
-    static QString getZECDisplayFormat(double bal);
-    static QString getZECUSDDisplayFormat(double bal);
+    static QString getCMMDisplayFormat(double bal);
+    static QString getCMMUSDDisplayFormat(double bal);
 
     static QString getTokenName();
     static QString getDonationAddr(bool sapling);

@@ -30,7 +30,7 @@ RPC::RPC(MainWindow* main) {
     // Set up timer to refresh Price
     priceTimer = new QTimer(main);
     QObject::connect(priceTimer, &QTimer::timeout, [=]() {
-        refreshZECPrice();
+        refreshCMMPrice();
     });
     priceTimer->start(Settings::priceRefreshSpeed);  // Every hour
 
@@ -84,7 +84,7 @@ void RPC::setConnection(Connection* c) {
 
     ui->statusBar->showMessage("Ready!");
 
-    refreshZECPrice();
+    refreshCMMPrice();
 
     // Force update, because this might be coming from a settings update
     // where we need to immediately refresh
@@ -615,7 +615,7 @@ void RPC::getInfoThenRefresh(bool force) {
             }
 
             if (!cmmPrice.isEmpty()) {
-                tooltip = "1 ZEC = " % cmmPrice % "\n" % tooltip;
+                tooltip = "1 CMM = " % cmmPrice % "\n" % tooltip;
             }
             main->statusLabel->setToolTip(tooltip);
             main->statusIcon->setToolTip(tooltip);
@@ -714,9 +714,9 @@ void RPC::refreshBalances() {
         auto balZ = QString::fromStdString(reply["private"]).toDouble();
         auto tot  = QString::fromStdString(reply["total"]).toDouble();
 
-        ui->balSheilded   ->setText(Settings::getZECDisplayFormat(balZ));
-        ui->balTransparent->setText(Settings::getZECDisplayFormat(balT));
-        ui->balTotal      ->setText(Settings::getZECDisplayFormat(tot));
+        ui->balSheilded   ->setText(Settings::getCMMDisplayFormat(balZ));
+        ui->balTransparent->setText(Settings::getCMMDisplayFormat(balT));
+        ui->balTotal      ->setText(Settings::getCMMDisplayFormat(tot));
 
         ui->balSheilded   ->setToolTip(Settings::getUSDFormat(balZ));
         ui->balTransparent->setToolTip(Settings::getUSDFormat(balT));
@@ -903,8 +903,8 @@ void RPC::watchTxStatus() {
     });
 }
 
-// Get the ZEC->USD price from coinmarketcap using their API
-void RPC::refreshZECPrice() {
+// Get the CMM->USD price from coinmarketcap using their API
+void RPC::refreshCMMPrice() {
     if  (conn == nullptr) 
         return noConnection();
 
@@ -926,7 +926,7 @@ void RPC::refreshZECPrice() {
                 } else {
                     qDebug() << reply->errorString();
                 }
-                Settings::getInstance()->setZECPrice(0);
+                Settings::getInstance()->setCMMPrice(0);
                 return;
             } 
 
@@ -934,15 +934,15 @@ void RPC::refreshZECPrice() {
             
             auto parsed = json::parse(all, nullptr, false);
             if (parsed.is_discarded()) {
-                Settings::getInstance()->setZECPrice(0);
+                Settings::getInstance()->setCMMPrice(0);
                 return;
             }
 
             for (const json& item : parsed.get<json::array_t>()) {
-                if (item["symbol"].get<json::string_t>() == "ZEC") {
+                if (item["symbol"].get<json::string_t>() == "CMM") {
                     QString price = QString::fromStdString(item["price_usd"].get<json::string_t>());
-                    qDebug() << "ZEC Price=" << price;
-                    Settings::getInstance()->setZECPrice(price.toDouble());
+                    qDebug() << "CMM Price=" << price;
+                    Settings::getInstance()->setCMMPrice(price.toDouble());
 
                     return;
                 }
@@ -953,7 +953,7 @@ void RPC::refreshZECPrice() {
         }
 
         // If nothing, then set the price to 0;
-        Settings::getInstance()->setZECPrice(0);
+        Settings::getInstance()->setCMMPrice(0);
     });
 }
 

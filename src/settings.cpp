@@ -103,7 +103,7 @@ bool Settings::isSaplingActive() {
            (!isTestnet() && getBlockNumber() > 419200);
 }
 
-double Settings::getZECPrice() { 
+double Settings::getCMMPrice() { 
     return cmmPrice; 
 }
 
@@ -153,8 +153,8 @@ void Settings::saveRestore(QDialog* d) {
 }
 
 QString Settings::getUSDFormat(double bal) {
-    if (!Settings::getInstance()->isTestnet() && Settings::getInstance()->getZECPrice() > 0) 
-        return "$" + QLocale(QLocale::English).toString(bal * Settings::getInstance()->getZECPrice(), 'f', 2);
+    if (!Settings::getInstance()->isTestnet() && Settings::getInstance()->getCMMPrice() > 0) 
+        return "$" + QLocale(QLocale::English).toString(bal * Settings::getInstance()->getCMMPrice(), 'f', 2);
     else 
         return QString();
 }
@@ -171,17 +171,17 @@ QString Settings::getDecimalString(double amt) {
     return f;
 }
 
-QString Settings::getZECDisplayFormat(double bal) {
+QString Settings::getCMMDisplayFormat(double bal) {
     // This is idiotic. Why doesn't QString have a way to do this?
     return getDecimalString(bal) % " " % Settings::getTokenName();
 }
 
-QString Settings::getZECUSDDisplayFormat(double bal) {
+QString Settings::getCMMUSDDisplayFormat(double bal) {
     auto usdFormat = getUSDFormat(bal);
     if (!usdFormat.isEmpty())
-        return getZECDisplayFormat(bal) % " (" % getUSDFormat(bal) % ")";
+        return getCMMDisplayFormat(bal) % " (" % getUSDFormat(bal) % ")";
     else
-        return getZECDisplayFormat(bal);
+        return getCMMDisplayFormat(bal);
 }
 
 const QString Settings::txidStatusMessage = QString(QObject::tr("Tx submitted (right click to copy) txid:"));
@@ -190,7 +190,7 @@ QString Settings::getTokenName() {
     if (Settings::getInstance()->isTestnet()) {
         return "TAZ";
     } else {
-        return "ZEC";
+        return "CMM";
     }
 }
 
