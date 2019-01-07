@@ -142,6 +142,7 @@ void ConnectionLoader::createCommerciumConf() {
     QTextStream out(&file); 
     
     out << "server=1\n";
+    out << "rpcport=12019\n";
     out << "addnode=seed01.commercium.net\n";
     out << "rpcuser=cmm-qt-wallet\n";
     out << "rpcpassword=" % randomPassword() << "\n";
@@ -476,11 +477,11 @@ QString ConnectionLoader::commerciumConfWritableLocation() {
 
 QString ConnectionLoader::commerciumParamsDir() {
     #ifdef Q_OS_LINUX
-    auto paramsLocation = QDir(QDir(QStandardPaths::writableLocation(QStandardPaths::HomeLocation)).filePath(".commercium-params"));
+    auto paramsLocation = QDir(QDir(QStandardPaths::writableLocation(QStandardPaths::HomeLocation)).filePath(".zcash-params"));
 #elif defined(Q_OS_DARWIN)
-    auto paramsLocation = QDir(QDir(QStandardPaths::writableLocation(QStandardPaths::HomeLocation)).filePath("Library/Application Support/CommerciumParams"));
+    auto paramsLocation = QDir(QDir(QStandardPaths::writableLocation(QStandardPaths::HomeLocation)).filePath("Library/Application Support/ZcashParams"));
 #else
-    auto paramsLocation = QDir(QDir(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)).filePath("../../CommerciumParams"));
+    auto paramsLocation = QDir(QDir(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)).filePath("../../ZcashParams"));
 #endif
 
     if (!paramsLocation.exists()) {
