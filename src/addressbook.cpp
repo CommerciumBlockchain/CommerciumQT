@@ -124,7 +124,6 @@ void AddressBook::open(MainWindow* parent, QLineEdit* target) {
         if (!addr.isEmpty() && !ab.label->text().isEmpty()) {
                 model.addNewLabel(ab.label->text(), ab.addr->text());
             }
-        }
     });
 
     // Import Button
