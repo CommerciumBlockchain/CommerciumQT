@@ -122,10 +122,6 @@ void AddressBook::open(MainWindow* parent, QLineEdit* target) {
     QObject::connect(ab.addNew, &QPushButton::clicked, [&] () {
         auto addr = ab.addr->text().trimmed();
         if (!addr.isEmpty() && !ab.label->text().isEmpty()) {
-            // Test if address is valid.
-            if (!Settings::isValidAddress(addr)) {
-                QMessageBox::critical(parent, QObject::tr("Address Format Error"), addr + QObject::tr(" doesn't seem to be a valid Commercium address."), QMessageBox::Ok);
-            } else {
                 model.addNewLabel(ab.label->text(), ab.addr->text());
             }
         }
