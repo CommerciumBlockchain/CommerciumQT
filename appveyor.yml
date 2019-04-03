@@ -33,5 +33,5 @@ deploy:
   artifact: commerciumqt
   publish: true
   explode: false
-    on:
-      appveyor_repo_tag: true
+  on:
+    appveyor_repo_tag: true
