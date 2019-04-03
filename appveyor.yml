@@ -1,4 +1,26 @@
-version: 1.0.{build}
+image: Visual Studio 2015
+
+environment:
+  matrix:
+  - QT: C:\Qt\5.7\msvc2015_64
+    PLATFORM: amd64
+    COMPILER: msvc
+    VSVER: 14
+
+clone_depth: 1
+
+init:
+  - set TAG_NAME=%APPVEYOR_REPO_TAG_NAME%
+
+build_script:
+  - call "build_windows.cmd"
+
+artifacts:
+  - path: build\windows\msvc\x86_64\release\CommerciumQT_$(appveyor_repo_tag_name)_windows_x86_64_portable.zip
+    name: portable
+  - path: installer\windows\x86_64\CommerciumQT_$(appveyor_repo_tag_name)_windows_x86_64_installer.exe
+    name: installer
+
 deploy:
 - provider: BinTray
   username: anthony19114
@@ -11,3 +33,5 @@ deploy:
   artifact: commerciumqt
   publish: true
   explode: false
+    on:
+      appveyor_repo_tag: true
