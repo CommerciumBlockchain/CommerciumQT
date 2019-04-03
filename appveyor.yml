@@ -1,0 +1,13 @@
+version: 1.0.{build}
+deploy:
+- provider: BinTray
+  username: anthony19114
+  api_key:
+    secure: AVKlqsy47KY6YUBMY8IoZ1uzDXQuNoJo6duGHO5Uw6XBTASSME7L2mSU2EuD4sIW
+  subject: CommerciumQT
+  repo: CommerciumQT
+  package: CommerciumQT
+  version: 0.5.6
+  artifact: commerciumqt
+  publish: true
+  explode: false
