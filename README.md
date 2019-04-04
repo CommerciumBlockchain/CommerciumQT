@@ -1,3 +1,8 @@
+Binaries can be downloaded at:
+
+https://continuousintegration.commercium.net/Release/
+
+
 cmm-qt-wallet, sapling compatible wallet and full node for Commercium that runs on Linux, Windows and macOS. Based on zec-qt-wallet
 
 
